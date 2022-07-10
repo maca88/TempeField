@@ -1,0 +1,64 @@
+<resources>
+    <fitContributions>
+        <fitField id="0"
+                  sortOrder="0"
+                  precision="1"
+                  displayInChart="true"
+                  chartTitle="@Strings.Temperature"
+                  dataLabel="@Strings.Temperature"
+                  unitLabel="@Strings.Celsius"
+                  fillColor="#FFFF00" />
+        <fitField id="1"
+                  sortOrder="1"
+                  precision="1"
+                  displayInChart="false"
+                  displayInActivitySummary="true"
+                  dataLabel="@Strings.MinTemperature"
+                  unitLabel="@Strings.Celsius"/>
+        <fitField id="2"
+                  sortOrder="2"
+                  precision="1"
+                  displayInChart="false"
+                  displayInActivitySummary="true"
+                  dataLabel="@Strings.MaxTemperature"
+                  unitLabel="@Strings.Celsius" />
+        <fitField id="3"
+                  sortOrder="3"
+                  precision="1"
+                  displayInChart="false"
+                  displayInActivitySummary="true"
+                  dataLabel="@Strings.AverageTemperature"
+                  unitLabel="@Strings.Celsius" />
+
+
+        <fitField id="4"
+                  sortOrder="4"
+                  precision="1"
+                  displayInChart="true"
+                  chartTitle="@Strings.Temperature"
+                  dataLabel="@Strings.Temperature"
+                  unitLabel="@Strings.Fahrenheit"
+                  fillColor="#FFFF00" />
+        <fitField id="5"
+                  sortOrder="5"
+                  precision="1"
+                  displayInChart="false"
+                  displayInActivitySummary="true"
+                  dataLabel="@Strings.MinTemperature"
+                  unitLabel="@Strings.Fahrenheit"/>
+        <fitField id="6"
+                  sortOrder="6"
+                  precision="1"
+                  displayInChart="false"
+                  displayInActivitySummary="true"
+                  dataLabel="@Strings.MaxTemperature"
+                  unitLabel="@Strings.Fahrenheit" />
+        <fitField id="7"
+                  sortOrder="7"
+                  precision="1"
+                  displayInChart="false"
+                  displayInActivitySummary="true"
+                  dataLabel="@Strings.AverageTemperature"
+                  unitLabel="@Strings.Fahrenheit" />
+    </fitContributions>
+</resources>

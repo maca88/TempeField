@@ -1,0 +1,28 @@
+project.manifest = manifest.xml
+
+base.sourcePath = source
+
+# maps default
+rectangle.excludeAnnotations = nonTouchScreen
+
+# Non touch screen devices
+edge130.excludeAnnotations = touchScreen
+edge130plus.excludeAnnotations = touchScreen
+edge520plus.excludeAnnotations = touchScreen
+edge530.excludeAnnotations = touchScreen
+edge_520.excludeAnnotations = touchScreen
+
+# The below code is generated
+edge1030.sourcePath = $(base.sourcePath);source-edge1030
+edge1030bontrager.sourcePath = $(base.sourcePath);source-edge1030bontrager
+edge1030plus.sourcePath = $(base.sourcePath);source-edge1030plus
+edge1040.sourcePath = $(base.sourcePath);source-edge1040
+edge130.sourcePath = $(base.sourcePath);source-edge130
+edge130plus.sourcePath = $(base.sourcePath);source-edge130plus
+edge520plus.sourcePath = $(base.sourcePath);source-edge520plus
+edge530.sourcePath = $(base.sourcePath);source-edge530
+edge820.sourcePath = $(base.sourcePath);source-edge820
+edge830.sourcePath = $(base.sourcePath);source-edge830
+edge_1000.sourcePath = $(base.sourcePath);source-edge_1000
+edge_520.sourcePath = $(base.sourcePath);source-edge_520
+edgeexplore.sourcePath = $(base.sourcePath);source-edgeexplore

@@ -1,0 +1,14 @@
+<strings>
+    <string id="AppName">Tempe Field</string>
+    <string id="Temperature">Tempe</string>
+    <string id="TempeBattery">Tempe Batt</string>
+    <string id="MinTemperature">Min Tempe</string>
+    <string id="MaxTemperature">Max Tempe</string>
+    <string id="Min24HTemperature">Min 24H</string>
+    <string id="Max24HTemperature">Max 24H</string>
+    <string id="AverageTemperature">Avg Tempe</string>
+    <string id="TemperatureOffset">Tempe offset</string>
+    <string id="Celsius">°C</string>
+    <string id="Fahrenheit">°F</string>
+    <string id="DeviceNumber">Tempe device number</string>
+</strings>

@@ -1,0 +1,9 @@
+<resources>
+  <jsonData id="Layouts">[240,400,0,240,199,0,240,132,0,240,99,0,240,79,0,119,79,0]</jsonData>
+  <jsonData id="Layout0">[120,28,2,1,null,120,226,8,1,240]</jsonData>
+  <jsonData id="Layout1">[120,28,2,1,null,120,141,8,1,240]</jsonData>
+  <jsonData id="Layout2">[120,28,2,1,null,120,100,8,1,240]</jsonData>
+  <jsonData id="Layout3">[120,24,2,1,null,120,84,8,1,240]</jsonData>
+  <jsonData id="Layout4">[120,24,2,1,null,120,72,7,1,240]</jsonData>
+  <jsonData id="Layout5">[60,24,2,1,null,60,64,6,1,119]</jsonData>
+</resources>

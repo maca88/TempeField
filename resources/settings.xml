@@ -1,0 +1,10 @@
+<resources>
+    <settings>
+        <setting propertyKey="@Properties.DN" title="@Strings.DeviceNumber">
+            <settingConfig type="numeric" />
+        </setting>
+        <setting propertyKey="@Properties.TO" title="@Strings.TemperatureOffset">
+            <settingConfig type="numeric" />
+        </setting>
+    </settings>
+</resources>

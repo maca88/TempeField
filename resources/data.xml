@@ -1,0 +1,9 @@
+<resources>
+<!--
+    0. Battery width
+    1. Monochrome
+    2. Upper label
+    3. Default value
+-->
+  <jsonData id="Settings">[52, false, false, "__._"]</jsonData>
+</resources>
