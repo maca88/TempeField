@@ -1,0 +1,24 @@
+<resources>
+  <jsonData id="Layouts">[360,360,15,360,179,7,360,179,13,360,102,5,360,128,13,360,116,7,360,125,5,360,115,13,179,179,9,179,179,12,360,128,7,179,107,1,179,107,4,360,121,13,179,179,3,179,179,6,360,89,7,360,88,5,360,89,13,179,88,1,179,88,4]</jsonData>
+  <jsonData id="Layout0">[180,105,0,1,null,180,223,8,1,330]</jsonData>
+  <jsonData id="Layout1">[180,76,0,1,null,180,159,6,1,276]</jsonData>
+  <jsonData id="Layout2">[180,29,0,1,null,180,107,6,1,276]</jsonData>
+  <jsonData id="Layout3">[null,null,null,null,null,180,91,8,1,330]</jsonData>
+  <jsonData id="Layout4">[null,null,null,null,null,180,76,6,1,254]</jsonData>
+  <jsonData id="Layout5">[180,47,0,1,null,180,107,5,1,259]</jsonData>
+  <jsonData id="Layout6">[180,24,0,1,null,180,111,7,1,330]</jsonData>
+  <jsonData id="Layout7">[180,26,0,1,null,180,86,5,1,259]</jsonData>
+  <jsonData id="Layout8">[104,30,0,1,null,104,92,5,1,150]</jsonData>
+  <jsonData id="Layout9">[81,30,0,1,null,81,92,5,1,150]</jsonData>
+  <jsonData id="Layout10">[180,47,0,1,null,180,115,5,1,254]</jsonData>
+  <jsonData id="Layout11">[90,30,0,1,null,90,89,5,1,162]</jsonData>
+  <jsonData id="Layout12">[90,30,0,1,null,90,89,5,1,162]</jsonData>
+  <jsonData id="Layout13">[180,22,0,1,null,180,90,5,1,192]</jsonData>
+  <jsonData id="Layout14">[104,103,0,1,null,104,163,5,1,159]</jsonData>
+  <jsonData id="Layout15">[81,103,0,1,null,81,163,5,1,159]</jsonData>
+  <jsonData id="Layout16">[180,40,0,1,null,180,81,4,1,231]</jsonData>
+  <jsonData id="Layout17">[180,24,0,1,null,180,74,4,1,314]</jsonData>
+  <jsonData id="Layout18">[180,24,0,1,null,180,69,4,1,158]</jsonData>
+  <jsonData id="Layout19">[104,24,0,1,null,104,74,4,1,154]</jsonData>
+  <jsonData id="Layout20">[81,24,0,1,null,81,74,4,1,154]</jsonData>
+</resources>

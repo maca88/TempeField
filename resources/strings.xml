@@ -1,7 +1,7 @@
 <strings>
     <string id="AppName">Tempe Field</string>
     <string id="Temperature">Tempe</string>
-    <string id="TempeBattery">Tempe Batt</string>
+    <string id="TempeBattery">Tempe Bat</string>
     <string id="MinTemperature">Min Tempe</string>
     <string id="MaxTemperature">Max Tempe</string>
     <string id="Min24HTemperature">Min 24H</string>

@@ -23,6 +23,7 @@ After the Tempe sensor is connected to Edge, its device number will be stored in
 ## Error codes
 
 In case an invalid combination of settings is selected or there an issue with the ANT channel, an error will be displayed on the screen. The following errors can be displayed:
-- **Error 1:** An error occurred while trying to initialize the ANT channel. Check that this data field is the only LEV/E-Bike data field displayed.
-- **Error 2:** The initialized ANT channel could not be opened. Check that this data field is the only LEV/E-Bike data field displayed.
+- **Error 1:** An error occurred while trying to initialize the ANT channel. Check that this data field is the only Tempe data field displayed.
+- **Error 2:** The initialized ANT channel could not be opened. Check that this data field is the only Tempe data field displayed.
 - **Error 3:** The field layout positions were not found.
+- **Error 4:** None of the predefined battery icons fit on the screen. This error will be shown only when there is a bug in the layout. 

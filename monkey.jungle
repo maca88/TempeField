@@ -4,6 +4,7 @@ base.sourcePath = source
 
 # maps default
 rectangle.excludeAnnotations = nonTouchScreen
+round.excludeAnnotations = touchScreen
 
 # Non touch screen devices
 edge130.excludeAnnotations = touchScreen
@@ -26,3 +27,35 @@ edge830.sourcePath = $(base.sourcePath);source-edge830
 edge_1000.sourcePath = $(base.sourcePath);source-edge_1000
 edge_520.sourcePath = $(base.sourcePath);source-edge_520
 edgeexplore.sourcePath = $(base.sourcePath);source-edgeexplore
+edgeexplore2.sourcePath = $(base.sourcePath);source-edgeexplore2
+epix2.sourcePath = $(base.sourcePath);source-epix2
+fenix5.sourcePath = $(base.sourcePath);source-fenix5
+fenix5plus.sourcePath = $(base.sourcePath);source-fenix5plus
+fenix5s.sourcePath = $(base.sourcePath);source-fenix5s
+fenix5splus.sourcePath = $(base.sourcePath);source-fenix5splus
+fenix5x.sourcePath = $(base.sourcePath);source-fenix5x
+fenix5xplus.sourcePath = $(base.sourcePath);source-fenix5xplus
+fenix6.sourcePath = $(base.sourcePath);source-fenix6
+fenix6pro.sourcePath = $(base.sourcePath);source-fenix6pro
+fenix6s.sourcePath = $(base.sourcePath);source-fenix6s
+fenix6spro.sourcePath = $(base.sourcePath);source-fenix6spro
+fenix6xpro.sourcePath = $(base.sourcePath);source-fenix6xpro
+fenix7.sourcePath = $(base.sourcePath);source-fenix7
+fenix7s.sourcePath = $(base.sourcePath);source-fenix7s
+fenix7x.sourcePath = $(base.sourcePath);source-fenix7x
+fr245.sourcePath = $(base.sourcePath);source-fr245
+fr245m.sourcePath = $(base.sourcePath);source-fr245m
+fr255.sourcePath = $(base.sourcePath);source-fr255
+fr255m.sourcePath = $(base.sourcePath);source-fr255m
+fr255s.sourcePath = $(base.sourcePath);source-fr255s
+fr255sm.sourcePath = $(base.sourcePath);source-fr255sm
+fr265.sourcePath = $(base.sourcePath);source-fr265
+fr265s.sourcePath = $(base.sourcePath);source-fr265s
+fr645.sourcePath = $(base.sourcePath);source-fr645
+fr645m.sourcePath = $(base.sourcePath);source-fr645m
+fr745.sourcePath = $(base.sourcePath);source-fr745
+fr935.sourcePath = $(base.sourcePath);source-fr935
+fr945.sourcePath = $(base.sourcePath);source-fr945
+fr945lte.sourcePath = $(base.sourcePath);source-fr945lte
+fr955.sourcePath = $(base.sourcePath);source-fr955
+fr965.sourcePath = $(base.sourcePath);source-fr965

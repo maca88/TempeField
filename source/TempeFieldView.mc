@@ -1,4 +1,5 @@
 import Toybox.Activity;
+import Toybox.Ant;
 import Toybox.Lang;
 import Toybox.Time;
 import Toybox.WatchUi;
@@ -18,6 +19,8 @@ class TempeFieldView extends WatchUi.DataField {
     private var _lastEventCount = -1;
     private var _currentValueIndex = 2;
     private var _tempOffset = 0f;
+    private var _batteryWidth;
+    private var _batteryY;
     // 0. Min 24H temp
     // 1. Max 24H temp
     // 2. Current temp
@@ -43,7 +46,7 @@ class TempeFieldView extends WatchUi.DataField {
         var i;
         for (i = 0; i < labels.size(); i++) {
             var label = WatchUi.loadResource(Rez.Strings[labels[i]]);
-            labels[i] = settings[2] /* Upper */ ? label.toUpper() : label;
+            labels[i] = settings[1] /* Upper */ ? label.toUpper() : label;
         }
 
         _labels = labels;
@@ -185,13 +188,14 @@ class TempeFieldView extends WatchUi.DataField {
 
         dc.setColor(fgColor, bgColor);
         dc.clear();
-        if (_errorCode) {
-            dc.drawText(width / 2, height / 2, 0, text, 1 /* TEXT_JUSTIFY_CENTER */ | 4 /* TEXT_JUSTIFY_VCENTER */);
-            return;
-        }
 
         if (_positions == null) {
             preCalculate(dc);
+        }
+
+        if (_errorCode) {
+            dc.drawText(dc.getWidth() / 2, dc.getHeight() / 2, 0, "Error: " + _errorCode, 1 /* TEXT_JUSTIFY_CENTER */ | 4 /* TEXT_JUSTIFY_VCENTER */);
+            return;
         }
 
         var pos = _positions;
@@ -200,8 +204,15 @@ class TempeFieldView extends WatchUi.DataField {
         var currentValueIndex = (_showBatteryTime > 0 && batteryStatus != null) ? 6 : _currentValueIndex;
 
         // Draw label
-        if (pos[0] != null) {
+        if (pos[0] != null && settings[3] /* Write label after value */ == false) {
             dc.drawText(pos[0], pos[1], pos[2], _labels[currentValueIndex], pos[3]);
+            // Debug
+            //var dim = dc.getTextDimensions(_labels[currentValueIndex], pos[2]);
+            //var fontX = pos[0] - (dim[0] / 2);
+            //dc.drawRectangle(fontX, pos[1], dim[0], dim[1]);
+            //dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_BLACK);
+            //var py = pos[1] + dim[1] - dc.getFontDescent(pos[2]);
+            //dc.drawLine(fontX, py, fontX + dim[0], py);
         }
 
         // Draw battery
@@ -210,13 +221,13 @@ class TempeFieldView extends WatchUi.DataField {
                 batteryStatus = 6; // Draw empty battery
             }
 
-            var batteryWidth = settings[0]; // 52, 42, 37
+            var batteryWidth = _batteryWidth; // 52, 42, 37
             var batteryHeight = batteryWidth / 2;
             var barWidth = batteryWidth / 5 - 2;
             var barHeight = batteryHeight - 7;
             var topHeight = batteryHeight - batteryHeight / 3;
             var x = pos[8] == 0 ? pos[5] - batteryWidth - 4 : pos[5] - batteryWidth / 2 - (topHeight / 2) + 4;
-            var y = pos[6] + batteryHeight / 2;
+            var y = _batteryY; // (pos[6] < 0 ? 0 : pos[6]) + batteryHeight / 2;
             var color = batteryStatus == 5 /* BATT_STATUS_CRITICAL */ ? 0xFF0000 /* COLOR_RED */
                 : batteryStatus > 2 /* BATT_STATUS_GOOD */ ? 0xFF5500 /* COLOR_ORANGE */
                 : 0x00AA00; /* COLOR_DK_GREEN */
@@ -224,7 +235,7 @@ class TempeFieldView extends WatchUi.DataField {
             dc.setPenWidth(2);
             dc.drawRectangle(x, y, batteryWidth + 3, batteryHeight);
             dc.drawRectangle(x + batteryWidth + 2, y + batteryHeight / 6, batteryHeight / 4, topHeight);
-            if (!settings[1] /* Monochrome */) {
+            if (!settings[0] /* Monochrome */) {
                 dc.setColor(color, bgColor);
             }
 
@@ -239,8 +250,24 @@ class TempeFieldView extends WatchUi.DataField {
             var value = _values[currentValueIndex];
             value = value != null && (timer - sensor.lastDataTime) < 70000
                 ? value.format("%.1f")
-                : settings[3];
+                : settings[2]; // Default value
             dc.drawText(pos[5], pos[6], pos[7], value, pos[8]);
+
+            // Debug
+            //var dim = dc.getTextDimensions(value, pos[7]);
+            //var fontX = pos[5] - (dim[0] / 2);
+            //dc.drawRectangle(fontX, pos[6], dim[0], dim[1]);
+        }
+
+        if (pos[0] != null && settings[3] /* Write label after value */ == true) {
+            dc.drawText(pos[0], pos[1], pos[2], _labels[currentValueIndex], pos[3]);
+            // Debug
+            //var dim = dc.getTextDimensions(_labels[currentValueIndex], pos[2]);
+            //var fontX = pos[0] - (dim[0] / 2);
+            //dc.drawRectangle(fontX, pos[1], dim[0], dim[1]);
+            //dc.setColor(Graphics.COLOR_RED, Graphics.COLOR_BLACK);
+            //var py = pos[1] + dim[1] - dc.getFontDescent(pos[2]);
+            //dc.drawLine(fontX, py, fontX + dim[0], py);
         }
     }
 
@@ -250,6 +277,8 @@ class TempeFieldView extends WatchUi.DataField {
         var flags = getObscurityFlags();
         var layouts = WatchUi.loadResource(Rez.JsonData.Layouts);
         var totalLayouts = layouts.size() / 3;
+        var settings = _settings;
+        _batteryWidth = null;
         for (var i = 0; i < totalLayouts; i++) {
             var index = i * 3;
             var layoutWidth = layouts[index];
@@ -259,12 +288,42 @@ class TempeFieldView extends WatchUi.DataField {
                 layouts = null; // Free resources
                 var positions = WatchUi.loadResource(Rez.JsonData[layoutResources[i]]);
                 positions[6] -= Graphics.getFontAscent(positions[7]);
+                var startY = 0;
                 if (positions[1]) {
                     positions[1] -= Graphics.getFontAscent(positions[2]);
+                    startY = positions[1] + dc.getFontHeight(positions[2]);
+                    if (settings[3] /* Write label after value */ == false) {
+                        startY -= dc.getFontDescent(positions[2]);
+                    }
                 }
 
+                //System.println("found=" + i + " lh=" + layoutHeight + " h=" + height + " f=" + flags + " pos=" + positions);
+
+                // Calculate battery width
+                var availHeight = height - startY;
+                var batteryWidths = [72, 62, 52, 42, 37];
+                for (var j = 0; j < batteryWidths.size(); j++) {
+                    var batteryWidth = batteryWidths[j];
+                    if (settings[4] /* Max battery width */ >= batteryWidth && availHeight - ((batteryWidth / 2) + 4 /* borders*/) > 0) {
+                        _batteryWidth = batteryWidth;
+                        break;
+                    }
+                }
+
+                if (_batteryWidth == null) {
+                    _errorCode = 4;
+                    return;
+                }
+
+                // Store the pre-calculated values
                 _positions = positions;
-                //System.println("found=" + i + " lh=" + layoutHeight + " h=" + height + " pos=" + _positions);
+                var diffY = availHeight - (_batteryWidth / 2) /* height */;
+                _batteryY = startY + (diffY / 2) + 1 /* borders */;
+                if (flags == 9 /* bottom left */ || flags == 12 /* bottom right */) {
+                    _batteryY -= (diffY / 4);
+                }
+
+                //System.println("availH=" + availHeight + " batW=" + _batteryWidth + " batY=" + _batteryY);
                 return;
             }
         }
