@@ -1,31 +1,34 @@
 using Toybox.Ant;
 using Toybox.Application.Properties as Properties;
 
+const maxReconnectRetries = 1;
+
 class TempeSensor {
     private var _channel;
-    private var _deviceNumber;
+    private var _deviceNumbers = new [3];
+    private var _deviceIndex = 0;
+    private var _reconnectRetires = 0;
 
     // 0. Event count
     // 1. Low temp
     // 2. High temp
     // 3. Current temp
     // 4. Battery level
-    public var data = new [5];
+    // 5. Temperature offset
+    public var data = new [6];
     public var searching = true;
     public var lastMessageTime = 0;
     public var lastDataTime = 0;
 
+    function initialize() {
+        // Load paired devices
+        setupDeviceNumbers();
+    }
+
     function open() {
-        _deviceNumber = Properties.getValue("DN");
         if (_channel == null) {
             _channel = new Ant.GenericChannel(method(:onMessage), new Ant.ChannelAssignment(0x00 /* CHANNEL_TYPE_RX_NOT_TX */, 1 /* NETWORK_PLUS */));
-            _channel.setDeviceConfig(new Ant.DeviceConfig({
-                :deviceNumber => _deviceNumber,
-                :deviceType => 25,        // Environment device
-                :messagePeriod => 65535,  // Channel period
-                :transmissionType => 0,   // Transmission type
-                :radioFrequency => 57     // Ant+ Frequency
-            }));
+            setChannelDeviceNumber();
         }
 
         return _channel.open();
@@ -56,8 +59,7 @@ class TempeSensor {
                 if (searching) {
                     searching = false;
                     // Update device number
-                    _deviceNumber = _channel.getDeviceConfig().deviceNumber;
-                    Properties.setValue("DN", _deviceNumber);
+                    setNewDeviceNumber();
                     requestBatteryStatusPage();
                 }
 
@@ -92,9 +94,20 @@ class TempeSensor {
                 var eventCode = payload[1] & 0xFF;
                 if (0x07 /* MSG_CODE_EVENT_CHANNEL_CLOSED */ == eventCode) {
                     // Channel closed, re-open only when the channel was not manually closed
-                    open();
+                    if (_channel != null) {
+                        if (_reconnectRetires > 0) {
+                            _reconnectRetires--;
+                            //System.println("Failed to connect, try to reconnect");
+                        } else {
+                            //System.println("Failed to connect, try connecting to the next device");
+                            setNextDeviceNumber();
+                        }
+
+                        open();
+                    }
                 } else if (0x08 /* MSG_CODE_EVENT_RX_FAIL_GO_TO_SEARCH */ == eventCode) {
                     searching = true;
+                    //System.println("MSG_CODE_EVENT_RX_FAIL_GO_TO_SEARCH");
                 } else if (0x06 /* MSG_CODE_EVENT_TRANSFER_TX_FAILED */ == eventCode) {
                     //System.println("Failed to send battery status page request");
                     // The battery status page request failed to be sent, try to resend it
@@ -127,5 +140,64 @@ class TempeSensor {
         ]);
         _channel.sendAcknowledge(command);
         //System.println("Requesting battery status page");
+    }
+
+    private function setNextDeviceNumber() {
+        var startDeviceIndex = _deviceIndex;
+        do {
+            _deviceIndex = (_deviceIndex + 1) % _deviceNumbers.size();
+        } while (_deviceNumbers[_deviceIndex] < 0 && startDeviceIndex != _deviceIndex);
+
+        if (startDeviceIndex != _deviceIndex) {
+            data[4] = null; // Reset battery level
+        }
+
+        //System.println("Setting device index=" + _deviceIndex);
+        setChannelDeviceNumber();
+    }
+
+    private function setNewDeviceNumber() {
+        _reconnectRetires = maxReconnectRetries;
+        var deviceNumbers = _deviceNumbers;
+        var newDeviceNumber = _channel.getDeviceConfig().deviceNumber;
+        var suffix = "";
+        // Find the first empty slot to insert the found device.
+        for (var i = 0; i < deviceNumbers.size(); i++) {
+            suffix = i == 0 ? "" : (i + 1).toString();
+            if (deviceNumbers[i] == 0) {
+                _deviceIndex = i;
+                deviceNumbers[i] = newDeviceNumber;
+                Properties.setValue("DN" + suffix, newDeviceNumber);
+                break;
+            } else if (deviceNumbers[i] == newDeviceNumber) {
+                _deviceIndex = i;
+                break;
+            }
+        }
+
+        // Update temp offset
+        data[5] = Properties.getValue("TO" + suffix);
+        //System.println("DN=" + newDeviceNumber + " I=" + _deviceIndex + " OF=" + data[5]);
+    }
+
+    private function setChannelDeviceNumber() {
+        var deviceNumber = _deviceNumbers[_deviceIndex];
+        //System.println("Setting device number=" + deviceNumber);
+        _channel.setDeviceConfig(new Ant.DeviceConfig({
+            :deviceNumber => deviceNumber,
+            :deviceType => 25,        // Environment device
+            :messagePeriod => 65535,  // Channel period
+            :transmissionType => 0,   // Transmission type
+            :radioFrequency => 57     // Ant+ Frequency
+        }));
+    }
+
+    private function setupDeviceNumbers() {
+        var deviceNumbers = _deviceNumbers;
+        for (var i = 0; i < deviceNumbers.size(); i++) {
+            var suffix = i == 0 ? "" : (i + 1).toString();
+            var deviceNumber = Properties.getValue("DN" + suffix);
+            deviceNumbers[i] = deviceNumber == null ? 0 : deviceNumber;
+        }
     }
 }

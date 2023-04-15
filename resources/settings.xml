@@ -6,5 +6,17 @@
         <setting propertyKey="@Properties.TO" title="@Strings.TemperatureOffset">
             <settingConfig type="numeric" />
         </setting>
+        <setting propertyKey="@Properties.DN2" title="@Strings.DeviceNumber2">
+            <settingConfig type="numeric" />
+        </setting>
+        <setting propertyKey="@Properties.TO2" title="@Strings.TemperatureOffset2">
+            <settingConfig type="numeric" />
+        </setting>
+        <setting propertyKey="@Properties.DN3" title="@Strings.DeviceNumber3">
+            <settingConfig type="numeric" />
+        </setting>
+        <setting propertyKey="@Properties.TO3" title="@Strings.TemperatureOffset3">
+            <settingConfig type="numeric" />
+        </setting>
     </settings>
 </resources>

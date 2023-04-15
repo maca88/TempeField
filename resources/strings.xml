@@ -7,8 +7,12 @@
     <string id="Min24HTemperature">Min 24H</string>
     <string id="Max24HTemperature">Max 24H</string>
     <string id="AverageTemperature">Avg Tempe</string>
-    <string id="TemperatureOffset">Tempe offset</string>
     <string id="Celsius">°C</string>
     <string id="Fahrenheit">°F</string>
     <string id="DeviceNumber">Tempe device number</string>
+    <string id="TemperatureOffset">Tempe offset</string>
+    <string id="DeviceNumber2">Second Tempe device number</string>
+    <string id="TemperatureOffset2">Second Tempe offset</string>
+    <string id="DeviceNumber3">Third Tempe device number</string>
+    <string id="TemperatureOffset3">Third Tempe offset</string>
 </strings>

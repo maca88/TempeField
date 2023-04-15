@@ -18,7 +18,6 @@ class TempeFieldView extends WatchUi.DataField {
     private var _settings;
     private var _lastEventCount = -1;
     private var _currentValueIndex = 2;
-    private var _tempOffset = 0f;
     private var _batteryWidth;
     private var _batteryY;
     // 0. Min 24H temp
@@ -65,8 +64,6 @@ class TempeFieldView extends WatchUi.DataField {
 
     // Called from TempeFieldApp.onStart()
     function onStart() {
-        // Update app settings
-        _tempOffset = Properties.getValue("TO");
         // Initialize ANT channel
         var errorCode = null;
         try {
@@ -120,7 +117,8 @@ class TempeFieldView extends WatchUi.DataField {
                 }
 
                 // Apply offset
-                values[i] += _tempOffset;
+                var tempOffset = sensorData[5];
+                values[i] += tempOffset == null ? 0f : tempOffset;
             }
 
             if (info.timerState != null && info.timerState != 0) {

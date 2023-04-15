@@ -14,11 +14,18 @@ Tempe Field is a [data field](https://developer.garmin.com/connect-iq/connect-iq
 1. [Download](https://apps.garmin.com/en-US/apps/d3889409-2a45-41b3-a4fd-b58547d1947c) the data field application from Garmin Connect Store and synchronize your Garmin Edge
 2. Select the data screen where you want put the data field
 3. On the chosen field select `Connect IQ` -> `Tempe Field`
-4. Place Tempe sensor near Edge and the temperature should be displayed on the screen
+4. Place Tempe sensor near Edge and the temperature should be displayed on the screen (this should take up to 15 seconds)
 
 ## Unpair Tempe sensor
 
 After the Tempe sensor is connected to Edge, its device number will be stored in the `Tempe device number` app-setting. In case you want to pair a different Tempe sensor, you need to reset `Tempe device number` app-setting by setting the value to `0`. This can be done by using either Garmin Express or Garmin Connect Mobile.
+
+## Pair multiple Tempe sensors
+
+By default only one Tempe will be paired in order to prevent pairing Tempe sensors from other people when our is off. To pair an additional Tempe sensors:
+1. Update `Second Tempe device number` app settings value from `-1` to `0`
+2. Make sure that the Tempe sensor that was already paired is far away from Garmin Edge
+3. Wait until the battery level is displayed (this can take up to one minute)
 
 ## Error codes
 
@@ -26,4 +33,4 @@ In case an invalid combination of settings is selected or there an issue with th
 - **Error 1:** An error occurred while trying to initialize the ANT channel. Check that this data field is the only Tempe data field displayed.
 - **Error 2:** The initialized ANT channel could not be opened. Check that this data field is the only Tempe data field displayed.
 - **Error 3:** The field layout positions were not found.
-- **Error 4:** None of the predefined battery icons fit on the screen. This error will be shown only when there is a bug in the layout. 
+- **Error 4:** None of the predefined battery icons fit on the screen. This error will be shown only when there is a bug in the layout.

@@ -2,5 +2,9 @@
     <properties>
         <property id="DN" type="number">0</property>
         <property id="TO" type="float">0</property>
+        <property id="DN2" type="number">-1</property>
+        <property id="TO2" type="float">0</property>
+        <property id="DN3" type="number">-1</property>
+        <property id="TO3" type="float">0</property>
     </properties>
 </resources>
