@@ -18,5 +18,8 @@
         <setting propertyKey="@Properties.TO3" title="@Strings.TemperatureOffset3">
             <settingConfig type="numeric" />
         </setting>
+        <setting propertyKey="@Properties.TD" title="@Strings.TrackingDelay">
+            <settingConfig type="numeric" />
+        </setting>
     </settings>
 </resources>

@@ -15,4 +15,5 @@
     <string id="TemperatureOffset2">Second Tempe offset</string>
     <string id="DeviceNumber3">Third Tempe device number</string>
     <string id="TemperatureOffset3">Third Tempe offset</string>
+    <string id="TrackingDelay">Tracking delay (in minutes)</string>
 </strings>

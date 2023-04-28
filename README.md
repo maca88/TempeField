@@ -27,6 +27,14 @@ By default only one Tempe will be paired in order to prevent pairing Tempe senso
 2. Make sure that the Tempe sensor that was already paired is far away from Garmin Edge
 3. Wait until the battery level is displayed (this can take up to one minute)
 
+## Tracking delay
+
+By default, minimum, maximum, and average temperatures are only updated when the timer is running. However, at the beginning of the activity, the Tempe sensor may not show an accurate temperature due to the drastic
+temperature changes (e. g. moving Tempe from a house/garage to outside). Therefore, it is possible to set a delay preventing updating min/max/avg temperatures. The delay will also be used when the activity is paused or
+stopped. When the activity is resumed, the data field will calculate the delay based on the set delay and the time the timer was paused/stopped. For example, if the delay is set to 15 minutes and the timer is paused for
+one minute (e. g. red light stop), the delay will only be one minute. If the timer is paused for more than 15 minutes, the delay will be 15. In short, the delay when the timer is resumed will be up to the delay set in the
+configuration.
+
 ## Error codes
 
 In case an invalid combination of settings is selected or there an issue with the ANT channel, an error will be displayed on the screen. The following errors can be displayed:

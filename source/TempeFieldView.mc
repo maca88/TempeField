@@ -20,6 +20,10 @@ class TempeFieldView extends WatchUi.DataField {
     private var _currentValueIndex = 2;
     private var _batteryWidth;
     private var _batteryY;
+    private var _stoppedTime;
+    private var _paused = false;
+    private var _trackingDelay = 0;
+    private var _currentDelay = 0;
     // 0. Min 24H temp
     // 1. Max 24H temp
     // 2. Current temp
@@ -48,6 +52,7 @@ class TempeFieldView extends WatchUi.DataField {
             labels[i] = settings[1] /* Upper */ ? label.toUpper() : label;
         }
 
+        updateTrackingDelay();
         _labels = labels;
         _settings = settings;
         _units = System.getDeviceSettings().temperatureUnits;
@@ -93,10 +98,30 @@ class TempeFieldView extends WatchUi.DataField {
         if (_sensor.data[4] == 5 /* CRITICAL */) {
             _showBatteryTime = 5; // Show battery
         }
+
+        _paused = false;
+        updateDelay();
+    }
+
+    function onTimerPause() {
+        _paused = true;
+        _stoppedTime = System.getTimer();
+    }
+
+    function onTimerStop() {
+        if (!_paused) {
+            _stoppedTime = System.getTimer();
+        }
+    }
+
+    function onTimerResume() {
+        _paused = false;
+        updateDelay();
     }
 
     // Called from TempeFieldApp.onSettingsChanged()
     function onSettingsChanged() {
+        updateTrackingDelay();
         // Reset ANT channel in case the device number was changed
         onStop();
         onStart();
@@ -104,7 +129,12 @@ class TempeFieldView extends WatchUi.DataField {
 
     function compute(info as Activity.Info) as Numeric or Duration or String or Null {
         var sensorData = _sensor.data;
-        if (sensorData[0] != _lastEventCount && sensorData[0] != null) {
+        var timerState = info.timerState;
+        if (timerState == 3 /* TIMER_STATE_ON */ && _currentDelay > 0) {
+            _currentDelay--;
+        }
+
+        if (sensorData[0] != null && sensorData[0] != _lastEventCount) {
             _lastEventCount = sensorData[0];
             var values = _values;
             for (var i = 0; i < 3; i++) {
@@ -121,8 +151,25 @@ class TempeFieldView extends WatchUi.DataField {
                 values[i] += tempOffset == null ? 0f : tempOffset;
             }
 
-            if (info.timerState != null && info.timerState != 0) {
+            if (timerState != null && timerState != 0 /* TIMER_STATE_OFF */) {
+                // Current temperature is always updated when the recording is active
                 var currentTemp = values[2];
+                _fitFields[0].setData(currentTemp);
+                //System.println("Updating current temp");
+
+                // Update max/min/avg only when timer state is on
+                if (timerState != 3 /* TIMER_STATE_ON */) {
+                    return null;
+                }
+
+                // Skip updating if the delay is set
+                if (_currentDelay > 0) {
+                    //System.println("Skip, delay in progress=" + _currentDelay);
+                    return null;
+                }
+
+                //System.println("Updating min/max/avg temps");
+
                 // Update min activity temp
                 if (values[3] == null || values[3] > currentTemp) {
                     values[3] = currentTemp;
@@ -146,7 +193,7 @@ class TempeFieldView extends WatchUi.DataField {
                 values[5] = values[6] / values[7].toFloat(); // Avg temp
 
                 // Record fit values
-                for (var i = 0; i < 4; i++) {
+                for (var i = 1; i < 4; i++) {
                     _fitFields[i].setData(values[i + 2]);
                 }
             }
@@ -327,5 +374,30 @@ class TempeFieldView extends WatchUi.DataField {
         }
 
         _errorCode = 3;
+    }
+
+    private function updateDelay() {
+        if (_trackingDelay == 0) {
+            return; // By default do not add any delay
+        }
+
+        var time = _stoppedTime != null ? (System.getTimer() - _stoppedTime) / 1000 : _trackingDelay;
+        _currentDelay += time > _trackingDelay ? _trackingDelay : time;
+        if (_currentDelay > _trackingDelay) {
+            _currentDelay = _trackingDelay;
+        }
+
+        //System.println("diff=" + (time) + " CD[s]=" + _currentDelay);
+    }
+
+    private function updateTrackingDelay() {
+        var trackingDelay = Properties.getValue("TD");
+        if (trackingDelay == null) {
+            trackingDelay = 0;
+        } else {
+            trackingDelay = trackingDelay * 60;
+        }
+
+        _trackingDelay = trackingDelay;
     }
 }
