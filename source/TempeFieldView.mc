@@ -12,7 +12,7 @@ class TempeFieldView extends WatchUi.DataField {
     private var _labels;
     private var _sensor;
     private var _tempFitField;
-    private var _showBatteryTime = 5;
+    private var _showBatteryTime = 5000;
     private var _fitFields = [];
     private var _units;
     private var _settings;
@@ -24,6 +24,7 @@ class TempeFieldView extends WatchUi.DataField {
     private var _paused = false;
     private var _trackingDelay = 0;
     private var _currentDelay = 0;
+    private var _lastOnUpdateCall = 0;
     // 0. Min 24H temp
     // 1. Max 24H temp
     // 2. Current temp
@@ -96,7 +97,7 @@ class TempeFieldView extends WatchUi.DataField {
 
     function onTimerStart() {
         if (_sensor.data[4] == 5 /* CRITICAL */) {
-            _showBatteryTime = 5; // Show battery
+            _showBatteryTime = 5000; // Show battery
         }
 
         _paused = false;
@@ -215,8 +216,10 @@ class TempeFieldView extends WatchUi.DataField {
 
     function onUpdate(dc) {
         var sensor = _sensor;
-        var lastMessageTime = sensor.lastMessageTime;
         var timer = System.getTimer();
+        var lastMessageTime = sensor.lastMessageTime;
+        var lastOnUpdateCall = _lastOnUpdateCall;
+        _lastOnUpdateCall = timer;
         // In case the device goes to sleep for a longer period of time the channel will be closed by the system
         // and TempeSensor.onMessage won't be called anymore. In such case release the current channel and open
         // a new one. To detect a sleep we check whether the last message was received more than the value of
@@ -288,7 +291,8 @@ class TempeFieldView extends WatchUi.DataField {
                 dc.fillRectangle(x + 3 + (barWidth + 2) * i, y + 3, barWidth, barHeight);
             }
 
-            _showBatteryTime--;
+            var diff = timer - lastOnUpdateCall;
+            _showBatteryTime -= (diff > 2000 ? 0 : diff);
             dc.setColor(fgColor, bgColor);
         } else {
             // Draw value
