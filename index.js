@@ -197,7 +197,8 @@ class ResourceWriter {
             metadata.push(fieldInfo);
           } else if (matches.length > 1) {
             //console.log('duplicate', fieldInfo, matches);
-            throw new Error("Duplicate field info");
+            continue;
+            //throw new Error("Duplicate field info");
           } else {
             const match = matches[0];
             if (!match.equals(fieldInfo)) {

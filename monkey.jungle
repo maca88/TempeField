@@ -14,6 +14,7 @@ edge130.excludeAnnotations = touchScreen
 edge130plus.excludeAnnotations = touchScreen
 edge520plus.excludeAnnotations = touchScreen
 edge530.excludeAnnotations = touchScreen
+edge540.excludeAnnotations = touchScreen
 edge_520.excludeAnnotations = touchScreen
 
 # The below code is generated
@@ -62,3 +63,5 @@ fr945.sourcePath = $(base.sourcePath);source-fr945
 fr945lte.sourcePath = $(base.sourcePath);source-fr945lte
 fr955.sourcePath = $(base.sourcePath);source-fr955
 fr965.sourcePath = $(base.sourcePath);source-fr965
+edge540.sourcePath = $(base.sourcePath);source-edge540
+edge840.sourcePath = $(base.sourcePath);source-edge840
