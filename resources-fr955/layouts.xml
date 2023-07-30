@@ -17,8 +17,8 @@
   <jsonData id="Layout14">[130,17,0,1,null,130,70,6,1,143]</jsonData>
   <jsonData id="Layout15">[73,71,0,1,null,69,118,5,1,104]</jsonData>
   <jsonData id="Layout16">[55,71,0,1,null,58,118,5,1,104]</jsonData>
-  <jsonData id="Layout17">[130,28,0,1,null,130,61,4,1,112]</jsonData>
-  <jsonData id="Layout18">[63,15,0,1,null,65,51,4,1,104]</jsonData>
-  <jsonData id="Layout19">[63,15,0,1,null,65,51,4,1,104]</jsonData>
-  <jsonData id="Layout20">[130,15,0,1,null,130,48,4,1,121]</jsonData>
+  <jsonData id="Layout17">[130,28,0,1,null,130,61,1,1,112]</jsonData>
+  <jsonData id="Layout18">[63,15,0,1,null,65,51,1,1,104]</jsonData>
+  <jsonData id="Layout19">[63,15,0,1,null,65,51,1,1,104]</jsonData>
+  <jsonData id="Layout20">[130,15,0,1,null,130,48,1,1,121]</jsonData>
 </resources>

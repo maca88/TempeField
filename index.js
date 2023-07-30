@@ -147,6 +147,11 @@ class ResourceWriter {
     let i = 0;
     while (i < fonts.length) {
       const font = fonts[i];
+      if (font.type === 'system_ttf') {
+        i++;
+        continue;
+      }
+
       let match;
       if ((match = this.fontSizeRegex.exec(font.filename)) === null) {
         // Try with a different font set

@@ -65,3 +65,4 @@ fr955.sourcePath = $(base.sourcePath);source-fr955
 fr965.sourcePath = $(base.sourcePath);source-fr965
 edge540.sourcePath = $(base.sourcePath);source-edge540
 edge840.sourcePath = $(base.sourcePath);source-edge840
+enduro.sourcePath = $(base.sourcePath);source-enduro
