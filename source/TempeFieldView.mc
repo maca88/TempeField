@@ -229,13 +229,15 @@ class TempeFieldView extends WatchUi.DataField {
         }
 
         var bgColor = getBackgroundColor();
-        var fgColor = 0x000000; /* COLOR_BLACK */
-        if (bgColor == 0x000000 /* COLOR_BLACK */) {
-            fgColor = 0xFFFFFF; /* COLOR_WHITE */
+        var fgColor = Graphics.COLOR_BLACK;
+        if (bgColor == Graphics.COLOR_BLACK) {
+            fgColor = Graphics.COLOR_WHITE;
         }
 
         dc.setColor(fgColor, bgColor);
         dc.clear();
+
+        dc.setColor(fgColor, Graphics.COLOR_TRANSPARENT);
 
         if (_positions == null) {
             preCalculate(dc);
