@@ -335,7 +335,7 @@ class TempeFieldView extends WatchUi.DataField {
             var layoutWidth = layouts[index];
             var layoutHeight = layouts[index + 1];
             var layoutFlags = layouts[index + 2];
-            if ((layoutWidth - width).abs() <= 2 && (layoutHeight - height).abs() <= 2 && layoutFlags == flags) {
+            if ((layoutWidth - width).abs() <= 3 && (layoutHeight - height).abs() <= 3 && layoutFlags == flags) {
                 layouts = null; // Free resources
                 var positions = WatchUi.loadResource(Rez.JsonData[layoutResources[i]]);
                 positions[6] -= Graphics.getFontAscent(positions[7]);
