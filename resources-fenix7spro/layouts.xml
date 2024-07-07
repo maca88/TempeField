@@ -1,5 +1,5 @@
 <resources>
-  <jsonData id="Layouts">[240,240,15,240,119,7,240,119,13,240,76,7,240,84,5,240,76,13,240,81,7,240,74,5,240,81,13,119,119,9,119,119,12,240,60,7,240,59,5,240,59,13,240,85,7,119,66,1,119,66,4,240,85,13,119,119,3,119,119,6,119,59,1,119,59,4,149,62,4,149,56,4,240,43,13,90,59,1]</jsonData>
+  <jsonData id="Layouts">[240,240,15,240,119,7,240,119,13,240,76,7,240,84,5,240,76,13,240,81,7,240,74,5,240,81,13,119,119,9,119,119,12,240,60,7,240,59,5,240,59,13,240,85,7,119,66,1,119,66,4,240,85,13,119,119,3,119,119,6,119,59,1,119,59,4]</jsonData>
   <jsonData id="Layout0">[120,69,0,1,null,120,149,8,1,192]</jsonData>
   <jsonData id="Layout1">[120,50,0,1,null,119,109,8,1,154]</jsonData>
   <jsonData id="Layout2">[120,18,0,1,null,119,75,8,1,154]</jsonData>
@@ -22,8 +22,4 @@
   <jsonData id="Layout19">[51,68,0,1,null,54,108,5,1,96]</jsonData>
   <jsonData id="Layout20">[59,15,0,1,null,60,46,4,1,96]</jsonData>
   <jsonData id="Layout21">[59,15,0,1,null,60,48,4,1,96]</jsonData>
-  <jsonData id="Layout22">[null,null,null,null,null,0,52,6,2,120]</jsonData>
-  <jsonData id="Layout23">[null,null,null,null,null,0,64,17,2,120]</jsonData>
-  <jsonData id="Layout24">[null,null,null,null,null,120,33,4,1,112]</jsonData>
-  <jsonData id="Layout25">[null,null,null,null,null,45,48,0,1,70]</jsonData>
 </resources>

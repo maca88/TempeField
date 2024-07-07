@@ -152,21 +152,27 @@ class ResourceWriter {
         continue;
       }
 
-      let match;
-      if ((match = this.fontSizeRegex.exec(font.filename)) === null) {
-        // Try with a different font set
-        const fontSet = data.fonts.find(o => triedFontSets.indexOf(o.fontSet) < 0);
-        if (!fontSet) {
-          throw new Error("Unable to detect font size");
+      let fontSize;
+      if (font.size) {
+        fontSize = Math.round(font.size);
+      } else {
+        let match;
+        if ((match = this.fontSizeRegex.exec(font.filename)) === null) {
+          // Try with a different font set
+          const fontSet = data.fonts.find(o => triedFontSets.indexOf(o.fontSet) < 0);
+          if (!fontSet) {
+            throw new Error(`Unable to detect font size for font ${font.filename}, device ${device}`);
+          }
+
+          triedFontSets.push(fontSet.fontSet);
+          fonts = fontSet.fonts;
+          i = 0;
+          continue;
         }
 
-        triedFontSets.push(fontSet.fontSet);
-        fonts = fontSet.fonts;
-        i = 0;
-        continue;
+        fontSize = parseInt(match[1]);
       }
 
-      const fontSize = parseInt(match[1]);
       const id = font.name === 'glanceFont' ? 18
         : font.name === 'glanceNumberFont' ? 19
         : font.name.startsWith('simExtNumber') ? this.getSimilarFontId(fontSize)

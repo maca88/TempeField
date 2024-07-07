@@ -72,3 +72,4 @@ epix2pro51mm.sourcePath = $(base.sourcePath);source-epix2pro51mm
 fenix7pro.sourcePath = $(base.sourcePath);source-fenix7pro
 fenix7spro.sourcePath = $(base.sourcePath);source-fenix7spro
 fenix7xpro.sourcePath = $(base.sourcePath);source-fenix7xpro
+edge1050.sourcePath = $(base.sourcePath);source-edge1050
