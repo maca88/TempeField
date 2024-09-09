@@ -161,7 +161,10 @@ class ResourceWriter {
           // Try with a different font set
           const fontSet = data.fonts.find(o => triedFontSets.indexOf(o.fontSet) < 0);
           if (!fontSet) {
-            throw new Error(`Unable to detect font size for font ${font.filename}, device ${device}`);
+            console.log(`Unable to detect font size for font ${font.filename}, device ${device}`);
+            i++;
+            continue;
+            //throw new Error(`Unable to detect font size for font ${font.filename}, device ${device}`);
           }
 
           triedFontSets.push(fontSet.fontSet);
@@ -359,6 +362,9 @@ class ResourceWriter {
     }
 
     const font = this.fontsInfo[data.font];
+    if (!font) {
+      throw Error(`Missing font ${data.font} for device ${this.device}`);
+    }
 
     return new TextInfo(
       data.x,

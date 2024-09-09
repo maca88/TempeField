@@ -8,6 +8,7 @@ project.typecheck = 0
 # maps default
 rectangle.excludeAnnotations = nonTouchScreen
 round.excludeAnnotations = touchScreen
+semioctagon.excludeAnnotations = touchScreen
 
 # Non touch screen devices
 edge130.excludeAnnotations = touchScreen
@@ -73,3 +74,19 @@ fenix7pro.sourcePath = $(base.sourcePath);source-fenix7pro
 fenix7spro.sourcePath = $(base.sourcePath);source-fenix7spro
 fenix7xpro.sourcePath = $(base.sourcePath);source-fenix7xpro
 edge1050.sourcePath = $(base.sourcePath);source-edge1050
+venu3.sourcePath = $(base.sourcePath);source-venu3
+venu3s.sourcePath = $(base.sourcePath);source-venu3s
+enduro3.sourcePath = $(base.sourcePath);source-enduro3
+fenix7pronowifi.sourcePath = $(base.sourcePath);source-fenix7pronowifi
+fenix7xpronowifi.sourcePath = $(base.sourcePath);source-fenix7xpronowifi
+fenix843mm.sourcePath = $(base.sourcePath);source-fenix843mm
+fenix847mm.sourcePath = $(base.sourcePath);source-fenix847mm
+fenix8solar47mm.sourcePath = $(base.sourcePath);source-fenix8solar47mm
+fenix8solar51mm.sourcePath = $(base.sourcePath);source-fenix8solar51mm
+fenixe.sourcePath = $(base.sourcePath);source-fenixe
+fr165.sourcePath = $(base.sourcePath);source-fr165
+fr165m.sourcePath = $(base.sourcePath);source-fr165m
+instinct2.sourcePath = $(base.sourcePath);source-instinct2
+instinct2s.sourcePath = $(base.sourcePath);source-instinct2s
+instinct2x.sourcePath = $(base.sourcePath);source-instinct2x
+instinctcrossover.sourcePath = $(base.sourcePath);source-instinctcrossover
