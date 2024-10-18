@@ -234,10 +234,8 @@ class TempeFieldView extends WatchUi.DataField {
             fgColor = Graphics.COLOR_WHITE;
         }
 
-        dc.setColor(fgColor, bgColor);
-        dc.clear();
-
         dc.setColor(fgColor, Graphics.COLOR_TRANSPARENT);
+        dc.clear();
 
         if (_positions == null) {
             preCalculate(dc);
