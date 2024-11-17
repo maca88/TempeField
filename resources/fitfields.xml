@@ -7,7 +7,7 @@
                   chartTitle="@Strings.Temperature"
                   dataLabel="@Strings.Temperature"
                   unitLabel="@Strings.Celsius"
-                  fillColor="#FFFF00" />
+                  fillColor="#9a9a9a" />
         <fitField id="1"
                   sortOrder="1"
                   precision="1"
@@ -38,7 +38,7 @@
                   chartTitle="@Strings.Temperature"
                   dataLabel="@Strings.Temperature"
                   unitLabel="@Strings.Fahrenheit"
-                  fillColor="#FFFF00" />
+                  fillColor="#9a9a9a" />
         <fitField id="5"
                   sortOrder="5"
                   precision="1"
