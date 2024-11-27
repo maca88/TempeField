@@ -128,5 +128,14 @@
         "valueYOffset":-3
       }
     }
+  ],
+  "fenix847mm":[
+    {
+      "width":225,
+      "height":94,
+      "values":{
+        "labelYOffset":3
+      }
+    }
   ]
 }
