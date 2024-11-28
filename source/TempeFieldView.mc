@@ -346,7 +346,7 @@ class TempeFieldView extends WatchUi.DataField {
                     }
                 }
 
-                //System.println("found=" + i + " lh=" + layoutHeight + " h=" + height + " f=" + flags + " pos=" + positions);
+                //System.println("found=" + i + " lh=" + layoutHeight + " lw=" + layoutWidth + " h=" + height + " w=" + width + " f=" + flags + " pos=" + positions);
 
                 // Calculate battery width
                 var availHeight = height - startY;
