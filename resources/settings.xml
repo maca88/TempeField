@@ -21,5 +21,8 @@
         <setting propertyKey="@Properties.TD" title="@Strings.TrackingDelay">
             <settingConfig type="numeric" />
         </setting>
+        <setting propertyKey="@Properties.DL" title="@Strings.DisplayLabel">
+            <settingConfig type="boolean" />
+        </setting>
     </settings>
 </resources>

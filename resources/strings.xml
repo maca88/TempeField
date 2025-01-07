@@ -16,4 +16,5 @@
     <string id="DeviceNumber3">Third Tempe device number</string>
     <string id="TemperatureOffset3">Third Tempe offset</string>
     <string id="TrackingDelay">Tracking delay (in minutes)</string>
+    <string id="DisplayLabel">Display label</string>
 </strings>

@@ -23,6 +23,7 @@ class TempeFieldView extends WatchUi.DataField {
     private var _stoppedTime;
     private var _paused = false;
     private var _trackingDelay = 0;
+    private var _displayLabel = true;
     private var _currentDelay = 0;
     private var _lastOnUpdateCall = 0;
     // 0. Min 24H temp
@@ -53,7 +54,7 @@ class TempeFieldView extends WatchUi.DataField {
             labels[i] = settings[1] /* Upper */ ? label.toUpper() : label;
         }
 
-        updateTrackingDelay();
+        updateSettings();
         _labels = labels;
         _settings = settings;
         _units = System.getDeviceSettings().temperatureUnits;
@@ -122,7 +123,7 @@ class TempeFieldView extends WatchUi.DataField {
 
     // Called from TempeFieldApp.onSettingsChanged()
     function onSettingsChanged() {
-        updateTrackingDelay();
+        updateSettings();
         // Reset ANT channel in case the device number was changed
         onStop();
         onStart();
@@ -252,7 +253,7 @@ class TempeFieldView extends WatchUi.DataField {
         var currentValueIndex = (_showBatteryTime > 0 && batteryStatus != null) ? 6 : _currentValueIndex;
 
         // Draw label
-        if (pos[0] != null && settings[3] /* Write label after value */ == false) {
+        if (_displayLabel && pos[0] != null && settings[3] /* Write label after value */ == false) {
             dc.drawText(pos[0], pos[1], pos[2], _labels[currentValueIndex], pos[3]);
             // Debug
             //var dim = dc.getTextDimensions(_labels[currentValueIndex], pos[2]);
@@ -394,7 +395,9 @@ class TempeFieldView extends WatchUi.DataField {
         //System.println("diff=" + (time) + " CD[s]=" + _currentDelay);
     }
 
-    private function updateTrackingDelay() {
+    private function updateSettings() {
+        _displayLabel = Properties.getValue("DL");
+
         var trackingDelay = Properties.getValue("TD");
         if (trackingDelay == null) {
             trackingDelay = 0;

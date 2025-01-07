@@ -7,5 +7,6 @@
         <property id="DN3" type="number">-1</property>
         <property id="TO3" type="float">0</property>
         <property id="TD" type="number">0</property>
+        <property id="DL" type="boolean">true</property>
     </properties>
 </resources>
