@@ -309,7 +309,7 @@ class TempeFieldView extends WatchUi.DataField {
             //dc.drawRectangle(fontX, pos[6], dim[0], dim[1]);
         }
 
-        if (pos[0] != null && settings[3] /* Write label after value */ == true) {
+        if (_displayLabel && pos[0] != null && settings[3] /* Write label after value */ == true) {
             dc.drawText(pos[0], pos[1], pos[2], _labels[currentValueIndex], pos[3]);
             // Debug
             //var dim = dc.getTextDimensions(_labels[currentValueIndex], pos[2]);
@@ -396,7 +396,8 @@ class TempeFieldView extends WatchUi.DataField {
     }
 
     private function updateSettings() {
-        _displayLabel = Properties.getValue("DL");
+        var displayLabel = Properties.getValue("DL");
+        _displayLabel = displayLabel == null || ((displayLabel instanceof Boolean) && displayLabel) || displayLabel == "true";
 
         var trackingDelay = Properties.getValue("TD");
         if (trackingDelay == null) {
