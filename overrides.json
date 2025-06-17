@@ -1,162 +1,199 @@
 {
-  "edge_1000":[
-    {
-      "height":99,
-      "width":240,
-      "values":{
-        "labelYOffset":-4
+    "edge_1000": {
+      "fields": [
+        {
+          "height": 99,
+          "width": 240,
+          "values": {
+            "labelYOffset": -4
+          }
+        }
+      ]
+    },
+    "edgeexplore": {
+      "fields": [
+        {
+          "height": 99,
+          "width": 240,
+          "values": {
+            "labelYOffset": -4
+          }
+        }
+      ]
+    },
+    "edge820": {
+      "fields": [
+        {
+          "height": 66,
+          "width": 200,
+          "values": {
+            "labelYOffset": -5,
+            "valueYOffset": -1
+          }
+        },
+        {
+          "height": 53,
+          "width": 200,
+          "values": {
+            "labelYOffset": -4,
+            "valueYOffset": -3,
+            "valueFont": 6
+          }
+        },
+        {
+          "height": 53,
+          "width": 99,
+          "values": {
+            "labelYOffset": -4,
+            "valueYOffset": -3
+          }
+        }
+      ]
+    },
+    "edge_520": {
+      "fields": [
+        {
+          "height": 66,
+          "width": 200,
+          "values": {
+            "labelYOffset": -5,
+            "valueYOffset": -1
+          }
+        },
+        {
+          "height": 53,
+          "width": 200,
+          "values": {
+            "labelYOffset": -4,
+            "valueYOffset": -3,
+            "valueFont": 6
+          }
+        },
+        {
+          "height": 53,
+          "width": 99,
+          "values": {
+            "labelYOffset": -4,
+            "valueYOffset": -3
+          }
+        }
+      ]
+    },
+    "edge520plus": {
+      "fields": [
+        {
+          "height": 65,
+          "width": 200,
+          "values": {
+            "labelYOffset": -5,
+            "valueYOffset": -1
+          }
+        },
+        {
+          "height": 52,
+          "width": 200,
+          "values": {
+            "labelYOffset": -5,
+            "valueYOffset": -3,
+            "valueFont": 6
+          }
+        },
+        {
+          "height": 52,
+          "width": 99,
+          "values": {
+            "labelYOffset": -5,
+            "valueYOffset": -3
+          }
+        }
+      ]
+    },
+    "edge1040": {
+      "fields": [
+        {
+          "values": {
+            "labelFont": 3
+          }
+        },
+        {
+          "fromHeight": 116,
+          "values": {
+            "labelFont": 4,
+            "labelYOffset": 7
+          }
+        },
+        {
+          "width": 140,
+          "height": 93,
+          "values": {
+            "labelYOffset": 4,
+            "valueFont": 7,
+            "valueYOffset": 9
+          }
+        },
+        {
+          "width": 282,
+          "height": 93,
+          "values": {
+            "labelYOffset": 4,
+            "valueYOffset": -3
+          }
+        }
+      ]
+    },
+    "fenix847mm": {
+      "fields": [
+        {
+          "width": 225,
+          "height": 94,
+          "values": {
+            "labelYOffset": 3
+          }
+        },
+        {
+          "width": 225,
+          "height": 109,
+          "values": {
+            "labelYOffset": 7
+          }
+        },
+        {
+          "width": 225,
+          "height": 112,
+          "values": {
+            "labelYOffset": 7
+          }
+        },
+        {
+          "width": 454,
+          "height": 111,
+          "values": {
+            "labelYOffset": 5
+          }
+        }
+      ]
+    },
+    "fr255": {
+      "fields": [],
+      "simFonts": {
+        "simExtNumber7": "tiny",
+        "simExtNumber6": "numberThaiHot",
+        "simExtNumber5": "numberHot",
+        "simExtNumber4": "numberMedium",
+        "simExtNumber3": "numberMild",
+        "simExtNumber2": "large",
+        "simExtNumber1": "medium"
+      },
+      "fontSizes": {
+        "numberMild": 26,
+        "numberMedium": 31,
+        "numberHot": 47
+      }
+    },
+    "fr255m": "fr255",
+    "venu3s": {
+      "fontSizes": {
+        "RobotoRegular": 26
       }
     }
-  ],
-  "edgeexplore":[
-    {
-      "height":99,
-      "width":240,
-      "values":{
-        "labelYOffset":-4
-      }
-    }
-  ],
-  "edge820":[
-    {
-      "height":66,
-      "width":200,
-      "values":{
-        "labelYOffset":-5,
-        "valueYOffset": -1
-      }
-    },
-    {
-      "height":53,
-      "width":200,
-      "values":{
-        "labelYOffset":-4,
-        "valueYOffset": -3,
-        "valueFont":6
-      }
-    },
-    {
-      "height":53,
-      "width":99,
-      "values":{
-        "labelYOffset":-4,
-        "valueYOffset": -3
-      }
-    }
-  ],
-  "edge_520":[
-    {
-      "height":66,
-      "width":200,
-      "values":{
-        "labelYOffset":-5,
-        "valueYOffset": -1
-      }
-    },
-    {
-      "height":53,
-      "width":200,
-      "values":{
-        "labelYOffset":-4,
-        "valueYOffset": -3,
-        "valueFont":6
-      }
-    },
-    {
-      "height":53,
-      "width":99,
-      "values":{
-        "labelYOffset":-4,
-        "valueYOffset": -3
-      }
-    }
-  ],
-  "edge520plus":[
-    {
-      "height":65,
-      "width":200,
-      "values":{
-        "labelYOffset":-5,
-        "valueYOffset": -1
-      }
-    },
-    {
-      "height":52,
-      "width":200,
-      "values":{
-        "labelYOffset":-5,
-        "valueYOffset": -3,
-        "valueFont":6
-      }
-    },
-    {
-      "height":52,
-      "width":99,
-      "values":{
-        "labelYOffset":-5,
-        "valueYOffset": -3
-      }
-    }
-  ],
-  "edge1040":[
-    {
-      "values":{
-        "labelFont":3
-      }
-    },
-    {
-      "fromHeight":116,
-      "values":{
-        "labelFont":4,
-        "labelYOffset":7
-      }
-    },
-    {
-      "width":140,
-      "height":93,
-      "values":{
-        "labelYOffset":4,
-        "valueFont":7,
-        "valueYOffset":9
-      }
-    },
-    {
-      "width":282,
-      "height":93,
-      "values":{
-        "labelYOffset":4,
-        "valueYOffset":-3
-      }
-    }
-  ],
-  "fenix847mm":[
-    {
-      "width":225,
-      "height":94,
-      "values":{
-        "labelYOffset":3
-      }
-    },
-    {
-      "width":225,
-      "height":109,
-      "values":{
-        "labelYOffset": 7
-      }
-    },
-    {
-      "width":225,
-      "height":112,
-      "values":{
-        "labelYOffset": 7
-      }
-    },
-    {
-      "width":454,
-      "height":111,
-      "values":{
-        "labelYOffset": 5
-      }
-    }
-  ]
-}
+  }

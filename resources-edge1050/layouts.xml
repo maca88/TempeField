@@ -5,6 +5,6 @@
   <jsonData id="Layout2">[240,76,3,1,null,240,187,7,1,470]</jsonData>
   <jsonData id="Layout3">[240,97,3,1,null,240,208,7,1,470]</jsonData>
   <jsonData id="Layout4">[240,59,3,1,null,240,170,7,1,470]</jsonData>
-  <jsonData id="Layout5">[240,44,18,1,null,240,131,7,1,470]</jsonData>
-  <jsonData id="Layout6">[119,44,18,1,null,119,135,7,1,235]</jsonData>
+  <jsonData id="Layout5">[240,44,9,1,null,240,131,7,1,470]</jsonData>
+  <jsonData id="Layout6">[119,44,9,1,null,119,135,7,1,235]</jsonData>
 </resources>

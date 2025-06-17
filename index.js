@@ -73,6 +73,22 @@ class FieldInfo {
   }
 }
 
+class ProductOverride {
+  constructor(data) {
+    data = data || {};
+    this.fields = (data.fields || []).map(o => new FieldOverride(o));
+    this.simFonts = {};
+    this.fontSizes = {};
+    for (const [key, value] of Object.entries(data.simFonts || {})) {
+      this.simFonts[key.toLowerCase()] = value.toLowerCase();
+    }
+
+    for (const [key, value] of Object.entries(data.fontSizes || {})) {
+      this.fontSizes[key.toLowerCase()] = value;
+    }
+  }
+}
+
 class FieldOverride {
   constructor(data) {
     this.obscurity = data.obscurity;
@@ -133,7 +149,7 @@ class ResourceWriter {
 
   constructor(device, overrides) {
     this.device = device;
-    this.overrides = (overrides || []).map(o => new FieldOverride(o));
+    this.overrides = new ProductOverride(overrides);
     const deviceDataPath = path.join(this.devicesFolder, device, 'simulator.json');
     if (!fs.existsSync(deviceDataPath)) {
       throw new Error('Device is not installed');
@@ -142,7 +158,6 @@ class ResourceWriter {
     const data = JSON.parse(fs.readFileSync(deviceDataPath));
     this.fontsInfo = {};
     this.layouts = data.layouts;
-    const triedFontSets = ['ww'];
     let fonts = data.fonts.find(o => o.fontSet === 'ww').fonts;
     let i = 0;
     while (i < fonts.length) {
@@ -152,25 +167,26 @@ class ResourceWriter {
         continue;
       }
 
+      font.name = font.name.toLowerCase();
+      if (font.name.startsWith('simextnumber') && this.overrides.simFonts[font.name]) {
+        this.fontsInfo[font.name] = this.fontsInfo[this.overrides.simFonts[font.name]];
+        if (!this.fontsInfo[font.name]) {
+          throw new Error(`Unable to translate simulator font ${font.name}, device ${device}`);
+        }
+
+        i++;
+        continue;
+      }
+
       let fontSize;
-      if (font.size) {
+      if (this.overrides.fontSizes[font.name]) {
+        fontSize = this.overrides.fontSizes[font.name];
+      } else if (font.size) {
         fontSize = Math.round(font.size);
       } else {
         let match;
         if ((match = this.fontSizeRegex.exec(font.filename)) === null) {
-          // Try with a different font set
-          const fontSet = data.fonts.find(o => triedFontSets.indexOf(o.fontSet) < 0);
-          if (!fontSet) {
-            console.log(`Unable to detect font size for font ${font.filename}, device ${device}`);
-            i++;
-            continue;
-            //throw new Error(`Unable to detect font size for font ${font.filename}, device ${device}`);
-          }
-
-          triedFontSets.push(fontSet.fontSet);
-          fonts = fontSet.fonts;
-          i = 0;
-          continue;
+          throw new Error(`Unable to detect font size for font ${font.filename}, device ${device}`);
         }
 
         fontSize = parseInt(match[1]);
@@ -178,16 +194,17 @@ class ResourceWriter {
 
       const id = font.name === 'glanceFont' ? 18
         : font.name === 'glanceNumberFont' ? 19
-        : font.name.startsWith('simExtNumber') ? this.getSimilarFontId(fontSize)
+        : font.name.startsWith('simextnumber') ? this.getSimilarFontId(fontSize)
         : i;
 
       this.fontsInfo[font.name] = {
         id: id,
         size: fontSize
       };
+
       i++;
     }
-    //console.log(fontsInfo);
+    //console.log(this.fontsInfo);
   }
 
   write() {
@@ -244,7 +261,7 @@ class ResourceWriter {
       }
     }
 
-    for (let fieldOverride of this.overrides) {
+    for (let fieldOverride of this.overrides.fields) {
       for (let item of metadata) {
         if (fieldOverride.matches(item)) {
           fieldOverride.apply(item)
@@ -361,9 +378,9 @@ class ResourceWriter {
       return null; // Label disabled
     }
 
-    const font = this.fontsInfo[data.font];
+    const font = this.fontsInfo[data.font.toLowerCase()];
     if (!font) {
-      throw Error(`Missing font ${data.font} for device ${this.device}`);
+      throw Error(`Missing font ${data.font} for device ${this.device}. Fonts: ${JSON.stringify(this.fontsInfo)}`);
     }
 
     return new TextInfo(
@@ -418,7 +435,12 @@ const overrides = fs.existsSync(overridesPath)
 
 for (let product of xmlData['iq:manifest']['iq:application']['iq:products']['iq:product']) {
   var productId = product['@id'];
-  var resourceWriter = new ResourceWriter(productId, overrides[productId]);
+  var productOverrides = overrides[productId];
+  while ((typeof productOverrides === 'string' || productOverrides instanceof String)) {
+    productOverrides = overrides[productOverrides];
+  }
+
+  var resourceWriter = new ResourceWriter(productId, productOverrides);
   resourceWriter.write();
 }
 
