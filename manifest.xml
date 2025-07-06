@@ -75,6 +75,7 @@
       <iq:product id="instinctcrossover"/>
       <iq:product id="venu3"/>
       <iq:product id="venu3s"/>
+      <iq:product id="venux1"/>
     </iq:products>
     <iq:permissions>
       <iq:uses-permission id="Ant"/>

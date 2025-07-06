@@ -91,3 +91,4 @@ instinct2s.sourcePath = $(base.sourcePath);source-instinct2s
 instinct2x.sourcePath = $(base.sourcePath);source-instinct2x
 instinctcrossover.sourcePath = $(base.sourcePath);source-instinctcrossover
 fr970.sourcePath = $(base.sourcePath);source-fr970
+venux1.sourcePath = $(base.sourcePath);source-venux1
